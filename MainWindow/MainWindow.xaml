@@ -1,0 +1,107 @@
+﻿<Window x:Class="GC.Programmer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:ap="clr-namespace:GC.Xaml.AttachedProperties;assembly=AttachedProperties"
+        Title="Programmer Utilities" Height="350" Width="525" FontSize="13">
+
+    <Window.Resources>
+        <Thickness x:Key="margin">4</Thickness>
+        
+        <Style TargetType="Grid">
+            <Setter Property="Margin" Value="{StaticResource margin}"></Setter>
+        </Style>
+        
+        <DataTemplate x:Key="lbColorTemplate">
+            <TextBlock Text="{Binding Name}" Background="{Binding Name}"></TextBlock>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="lvColorTemplate">
+            <TextBlock Text="{Binding Name}" Background="{Binding Name}"></TextBlock>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="1">
+            
+            <!--Drop Content Tab-->
+            <TabItem Header="Drop Content" Background="Transparent" AllowDrop="True" Drop="tabDropContentDrop">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="DROP HERE" Grid.Row="0" Grid.ColumnSpan="10" Margin="8"
+                               FontFamily="Arial Black" FontSize="28" Foreground="LightGray"
+                               HorizontalAlignment="Stretch" TextAlignment="Center"></TextBlock>
+
+                    <DockPanel Grid.Row="1" Grid.Column="0" >
+                        <TextBlock DockPanel.Dock="Top" Margin="{StaticResource margin}">Data Formats:</TextBlock>
+                        
+                        <ListBox x:Name="lbDataFormats" Margin="{StaticResource margin}"
+                             ap:ListBoxServices.InactiveSelectionColor="Khaki"
+                             SelectionChanged="lbDataFormats_SelectionChanged"></ListBox>
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="1" Grid.Column="1">
+                        <TextBlock DockPanel.Dock="Top" Margin="{StaticResource margin}">Data Type:</TextBlock>
+                        
+                        <TextBox x:Name="txbType" DockPanel.Dock="Top" AllowDrop="True"
+                                 Drop="tabDropContentDrop" PreviewDragOver="txb_PreviewDragOver"
+                                 Margin="{StaticResource margin}"
+                                 HorizontalScrollBarVisibility="Auto" ></TextBox>
+
+                        <TextBlock DockPanel.Dock="Top" Margin="{StaticResource margin}">Data Content:</TextBlock>
+
+                        <TextBox x:Name="txbDataContent" Background="{x:Null}" AllowDrop="True"
+                                 Drop="tabDropContentDrop" PreviewDragOver="txb_PreviewDragOver"
+                                 Margin="{StaticResource margin}" HorizontalScrollBarVisibility="Auto"
+                                 VerticalScrollBarVisibility="Auto"></TextBox>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+            
+            <!--Color Table Tab-->
+            <TabItem Header="Color Table" Initialized="tabColorTable_Initialized">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    
+                    
+                    <ListBox x:Name="lbColor" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding}"
+                             ItemTemplate="{StaticResource lbColorTemplate}"
+                             HorizontalContentAlignment="Stretch"></ListBox>
+                    
+                    <ListView x:Name="lvColor" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding}"
+                              ItemTemplate="{StaticResource lvColorTemplate}"></ListView>
+                    
+                    <TextBox x:Name="txtColor1" Grid.Row="2" Grid.Column="0"></TextBox>
+
+                    <TextBox x:Name="txtColor2" Grid.Row="2" Grid.Column="0"></TextBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

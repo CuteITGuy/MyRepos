@@ -1,0 +1,44 @@
+﻿<Window x:Class="ProgrammerUtilities.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Programmer Utilities" Height="350" Width="525">
+
+    <Window.Resources>
+        <Thickness x:Key="margin">4</Thickness>
+    </Window.Resources>
+
+    <Grid Margin="{StaticResource margin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="1">
+            <TabItem Header="Drop Content" Background="Transparent"
+                      AllowDrop="True" Drop="tabDropContentDrop">
+                <Grid Margin="{StaticResource margin}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="DROP HERE" Grid.Row="0" Grid.ColumnSpan="10"
+                               FontFamily="Arial Black" FontSize="28" Foreground="LightGray"
+                               HorizontalAlignment="Stretch" TextAlignment="Center"></TextBlock>
+
+                    <ListBox x:Name="lbDataFormats" Grid.Row="1" Grid.Column="0"
+                             SelectionChanged="lbDataFormats_SelectionChanged"></ListBox>
+
+                    <TextBox x:Name="txbDataContent" Grid.Row="1" Grid.Column="1" AllowDrop="True"></TextBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
