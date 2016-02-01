@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="GC.Programmer.FontTableControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:xaml="http://wpf.cb.com/xaml"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="450">
+
+    <UserControl.Resources>
+        <CompositeCollection x:Key="cclTextDecoration">
+            <sys:String>None</sys:String>
+            <CollectionContainer Collection="{xaml:StaticProperties TextDecorations}"></CollectionContainer>
+        </CompositeCollection>
+
+        <Style x:Key="stlBoundFontControl">
+            <Setter Property="Control.FontStretch" Value="{Binding ElementName=cbxFontStretch, Path=SelectedValue}"></Setter>
+            <Setter Property="Control.FontStyle" Value="{Binding ElementName=cbxFontStyle, Path=SelectedValue}"></Setter>
+            <Setter Property="Control.FontWeight" Value="{Binding ElementName=cbxFontWeight, Path=SelectedValue}"></Setter>
+            <Setter Property="Control.Foreground" Value="{Binding ElementName=cbxFontColor, Path=SelectedValue}"></Setter>
+            <Setter Property="TextBlock.TextDecorations" Value="{Binding ElementName=cbxTextDecoration, Path=SelectedValue}"></Setter>
+        </Style>
+
+        <DataTemplate x:Key="dtpFont">
+            <TextBlock Text="{Binding Mode=OneWay}" FontFamily="{Binding}" ToolTip="{Binding}"
+                       Width="128" Margin="1,6,1,6" TextAlignment="Center" VerticalAlignment="Center"
+                       Style="{StaticResource stlBoundFontControl}"></TextBlock>
+        </DataTemplate>
+
+        <Style x:Key="stlFontListBox" TargetType="ListBox" BasedOn="{StaticResource stlGridViewListBox}">
+            <Setter Property="ItemTemplate" Value="{StaticResource dtpFont}"></Setter>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="{StaticResource thsMedium}"></Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <ListBox x:Name="lbxFonts" Grid.Row="0" Grid.ColumnSpan="10" ItemsSource="{x:Static Fonts.SystemFontFamilies}"
+                 Style="{StaticResource stlFontListBox}"></ListBox>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Font Weight:" Style="{StaticResource stlSimpleTextBlock}"></TextBlock>
+
+        <ComboBox x:Name="cbxFontWeight" Grid.Row="1" Grid.Column="1" ItemsSource="{xaml:StaticProperties {x:Type FontWeights}}"
+                      SelectedValue="Regular"></ComboBox>
+
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Text Decoration:" Style="{StaticResource stlSimpleTextBlock}"></TextBlock>
+
+        <ComboBox x:Name="cbxTextDecoration" Grid.Row="1" Grid.Column="3" ItemsSource="{StaticResource cclTextDecoration}"
+                  SelectedValue="None"></ComboBox>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Font Style:" Style="{StaticResource stlSimpleTextBlock}"></TextBlock>
+
+        <ComboBox x:Name="cbxFontStyle" Grid.Row="2" Grid.Column="1" ItemsSource="{xaml:StaticProperties FontStyles}"
+                  SelectedValue="Normal"></ComboBox>
+
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="Font Stretch:" Style="{StaticResource stlSimpleTextBlock}"></TextBlock>
+
+        <ComboBox x:Name="cbxFontStretch" Grid.Row="2" Grid.Column="3" ItemsSource="{xaml:StaticProperties FontStretches}"
+                  SelectedValue="Normal"></ComboBox>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Font Color:" Style="{StaticResource stlSimpleTextBlock}"></TextBlock>
+
+        <DockPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="10">
+            <TextBox x:Name="tbxFontSize" DockPanel.Dock="Right" Text="12" MinWidth="80"
+                     Style="{StaticResource stlSimpleTextBox}"></TextBox>
+
+            <TextBlock DockPanel.Dock="Right" Text="Font Size:" Style="{StaticResource stlSimpleTextBlock}"></TextBlock>
+
+            <ComboBox x:Name="cbxFontColor" ItemsSource="{xaml:StaticProperties Colors}"
+                      SelectedValue="Black"></ComboBox>
+        </DockPanel>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Sample Text" Style="{StaticResource stlSimpleTextBlock}"></TextBlock>
+
+        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="10" Margin="{StaticResource thsMedium}"
+                 Style="{StaticResource stlBoundFontControl}" 
+                 FontFamily="{Binding ElementName=lbxFonts, Path=SelectedValue}"
+                 FontSize="{Binding ElementName=tbxFontSize, Path=Text}"></TextBox>
+    </Grid>
+</UserControl>

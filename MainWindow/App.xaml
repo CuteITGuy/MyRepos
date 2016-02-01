@@ -1,8 +1,73 @@
 ﻿<Application x:Class="GC.Programmer.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:xaml="http://wpf.cb.com/xaml"
              StartupUri="MainWindow.xaml">
+    
     <Application.Resources>
-         
+        <!--Colors & Brushes-->
+        <SolidColorBrush x:Key="brsLightYellow" Color="#FFF9F969"/>
+
+        <SolidColorBrush x:Key="brsMediumGreen" Color="#FF7BE200"></SolidColorBrush>
+
+        <SolidColorBrush x:Key="brsOpaqueBlue" Color="#A5B9F9FF"/>
+        
+        <SolidColorBrush x:Key="brsTransparentBlue" Color="#260000FF"/>
+
+        <SolidColorBrush x:Key="brsTransparentGreen" Color="#2600FF00"/>
+
+        <SolidColorBrush x:Key="brsTransparentOrange" Color="#26FFA500"/>
+
+        <SolidColorBrush x:Key="brsTransparentPurple" Color="#26800080"/>
+        
+        <SolidColorBrush x:Key="brsTransparentRed" Color="#26FF0000"/>
+
+        <SolidColorBrush x:Key="brsTransparentYellow" Color="#26FFFF00"></SolidColorBrush>
+
+        <!--Dimensions-->
+        <Thickness x:Key="thsVerySmall">1</Thickness>
+
+        <Thickness x:Key="thsSmall">2</Thickness>
+
+        <Thickness x:Key="thsMedium">4</Thickness>
+        
+        <Thickness x:Key="thsLarge">8</Thickness>
+
+        <!--Styles & Templates-->
+        <ItemsPanelTemplate x:Key="iptGridViewListBox">
+            <WrapPanel Orientation="Horizontal" Background="#0C009DA4"></WrapPanel>
+        </ItemsPanelTemplate>
+
+        <Style x:Key="stlGridViewListBox" TargetType="ListBox">
+            <Setter Property="Background" Value="{StaticResource brsOpaqueBlue}"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource brsMediumGreen}"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+            <Setter Property="ItemsPanel" Value="{StaticResource iptGridViewListBox}"></Setter>
+            <Setter Property="Margin" Value="{StaticResource thsMedium}"></Setter>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"></Setter>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"></Setter>
+            <Setter Property="xaml:ItemsControlServices.ActiveSelectionColor" Value="Gold"></Setter>
+            <Setter Property="xaml:ItemsControlServices.InactiveSelectionColor" Value="Khaki"></Setter>
+        </Style>
+
+        <Style x:Key="stlSimpleCheckBox" TargetType="CheckBox">
+            <Setter Property="Margin" Value="{StaticResource thsMedium}"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+        
+        <Style x:Key="stlSimpleComboBox" TargetType="ComboBox">
+            <Setter Property="Margin" Value="{StaticResource thsMedium}"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+        
+        <Style x:Key="stlSimpleTextBlock" TargetType="TextBlock">
+            <Setter Property="Margin" Value="{StaticResource thsMedium}"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+        
+        <Style x:Key="stlSimpleTextBox" TargetType="TextBox">
+            <Setter Property="Margin" Value="{StaticResource thsMedium}"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
     </Application.Resources>
 </Application>

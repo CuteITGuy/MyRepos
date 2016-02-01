@@ -33,9 +33,39 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>code.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AeroGlass">
+      <HintPath>E:\Library\Cs\Interop\AeroGlass\bin\Release\AeroGlass.dll</HintPath>
+    </Reference>
+    <Reference Include="AttachedProperties, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Library\Cs\Xaml\AttachedProperties\bin\Release\AttachedProperties.dll</HintPath>
+    </Reference>
+    <Reference Include="CB.Application.ContextMenuCommands">
+      <HintPath>D:\Library\Dot Net\CB.Application\CB.Application.ContextMenuCommands\bin\Release\CB.Application.ContextMenuCommands.dll</HintPath>
+    </Reference>
+    <Reference Include="CB.Win32.Common">
+      <HintPath>D:\Library\Dot Net\CB.Win32\CB.Win32.Common\bin\Release\CB.Win32.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="CB.Win32.WindowManipulation">
+      <HintPath>D:\Library\Dot Net\CB.Win32\CB.Win32.WindowManipulation\bin\Release\CB.Win32.WindowManipulation.dll</HintPath>
+    </Reference>
+    <Reference Include="CB.Win32.Windows">
+      <HintPath>D:\Library\Dot Net\CB.Win32\CB.Win32.Windows\bin\Release\CB.Win32.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="ColorHelper">
+      <HintPath>E:\Library\Cs\WPF\Media\ColorHelper\bin\Release\ColorHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkupExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Library\Cs\Xaml\MarkupExtensions\bin\Release\MarkupExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -43,6 +73,14 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ValueConverters, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Library\Cs\Xaml\ValueConverters\bin\Release\ValueConverters.dll</HintPath>
+    </Reference>
+    <Reference Include="Windows, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Library\Cs\PlatformInvoke\Windows\Windows\bin\Release\Windows.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -53,6 +91,40 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ColorBrighnessComparer.cs">
+      <DependentUpon>ColorTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorBrighnessConverter.cs">
+      <DependentUpon>ColorTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorBrightness.cs">
+      <DependentUpon>ColorTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPropertyBrighnessComparer.cs">
+      <DependentUpon>ColorTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorTableControl.xaml.cs">
+      <DependentUpon>ColorTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FontTableControl.xaml.cs">
+      <DependentUpon>FontTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowTab.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ColorTableControl.xaml">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FontTableControl.xaml">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -61,12 +133,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ColorTableTab.cs" />
     <Compile Include="DropContentTab.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -99,10 +166,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="H:\Library\Cs\Xaml\AttachedProperties\AttachedProperties.csproj">
-      <Project>{19090aab-5249-4823-b830-35c116fdb5d4}</Project>
-      <Name>AttachedProperties</Name>
-    </ProjectReference>
+    <Resource Include="code.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="programmer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

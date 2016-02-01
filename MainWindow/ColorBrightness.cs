@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace GC.Programmer
 {
-    public partial class App : System.Windows.Application
+    public enum ColorBrightness
     {
+        Bright,
+        Medium,
+        Dark
     }
 }
